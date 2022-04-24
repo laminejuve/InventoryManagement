@@ -35,4 +35,21 @@ public class ArticleDto {
                 .tauxTva(article.getTauxTva())
                 .build();
     }
+
+    public Article toEntity (ArticleDto articleDto){
+        if (articleDto == null){
+            // todo
+            return null;
+        }
+        Article article = new Article();
+        article.setId(articleDto.getId());
+        article.setCodeArticel(articleDto.getCodeArticel());
+        article.setDesignation(articleDto.getDesignation());
+        article.setPhoto(articleDto.getPhoto());
+        article.setPrixUnitaireHt(articleDto.getPrixUnitaireHt());
+        article.setPrixUnitaireTtc(articleDto.getPrixUnitaireTtc());
+        article.setTauxTva(articleDto.getTauxTva());
+
+        return article;
+    }
 }
