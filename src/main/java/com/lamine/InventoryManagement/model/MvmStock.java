@@ -25,5 +25,5 @@ public class MvmStock extends AbstractEntity {
     @JoinColumn(name = "idArticle")
     private Article article;
 
-    private TypeMvtStk typeMvt ;
+   // private TypeMvtStk typeMvt ;
 }
