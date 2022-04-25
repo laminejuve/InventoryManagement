@@ -1,5 +1,6 @@
 package com.lamine.InventoryManagement.dto;
 
+import com.lamine.InventoryManagement.model.CommandeClient;
 import lombok.Builder;
 import lombok.Data;
 import java.time.Instant;
@@ -14,4 +15,29 @@ public class CommandeClientDto {
     private Instant dateCommande ;
     private ClientDto client ;
     private List<LigneCommandeClientDto> ligneCommandeClients ;
+
+    public CommandeClientDto fromEntity (CommandeClient commandeClient){
+
+        if (commandeClient == null){
+            // TODO an exception
+            return null ;
+        }
+        return  CommandeClientDto.builder()
+                .id(commandeClient.getId())
+                .code(commandeClient.getCode())
+                .dateCommande(commandeClient.getDateCommande())
+                .build();
+    }
+
+    public CommandeClient toEntity (CommandeClientDto commandeClientDto){
+        if (commandeClientDto == null){
+            //TODO an exception
+            return null;
+        }
+        CommandeClient commandeClient = new CommandeClient();
+        commandeClient.setId(commandeClientDto.getId());
+        commandeClient.setCode(commandeClientDto.getCode());
+        commandeClient.setDateCommande(commandeClientDto.getDateCommande());
+        return commandeClient;
+    }
 }
