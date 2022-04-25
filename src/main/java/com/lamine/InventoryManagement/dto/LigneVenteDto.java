@@ -1,5 +1,7 @@
 package com.lamine.InventoryManagement.dto;
 
+import com.lamine.InventoryManagement.model.LigneVente;
+import com.lamine.InventoryManagement.model.Vente;
 import lombok.Builder;
 import lombok.Data;
 
@@ -13,4 +15,28 @@ public class LigneVenteDto {
     private VenteDto vente;
     private BigDecimal quantity ;
     private BigDecimal prixUnitaire;
+
+    public LigneVenteDto fromEntity (LigneVente ligneVente){
+        if (ligneVente == null){
+            //TODO an exception
+            return null ;
+        }
+        return  LigneVenteDto.builder()
+                .id(ligneVente.getId())
+                .quantity(ligneVente.getQuantity())
+                .prixUnitaire(ligneVente.getPrixUnitaire())
+                .build();
+    }
+
+    public LigneVente toEntity (LigneVenteDto ligneVenteDto){
+        if (ligneVenteDto == null){
+            //TODO an exception
+            return null ;
+        }
+        LigneVente ligneVente = new LigneVente();
+        ligneVente.setId(ligneVenteDto.getId());
+        ligneVente.setQuantity(ligneVenteDto.getQuantity());
+        ligneVente.setPrixUnitaire(ligneVenteDto.getPrixUnitaire());
+        return ligneVente ;
+    }
 }

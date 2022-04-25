@@ -1,6 +1,7 @@
 package com.lamine.InventoryManagement.dto;
 
 import com.lamine.InventoryManagement.model.LigneVente;
+import com.lamine.InventoryManagement.model.Vente;
 import lombok.Builder;
 import lombok.Data;
 
@@ -16,4 +17,29 @@ public class VenteDto {
     private String code;
     private Instant dateVente;
     private String commentaire;
+
+    public VenteDto fromEntity (Vente vente){
+        if (vente == null){
+            //TODO an exception
+            return null ;
+        }
+        return VenteDto.builder()
+                .id(vente.getId())
+                .code(vente.getCode())
+                .dateVente(getDateVente())
+                .commentaire(vente.getCommentaire())
+                .build();
+    }
+    public Vente toEntity (VenteDto venteDto){
+        if (venteDto == null){
+            //TODO an exception
+            return null;
+        }
+        Vente vente = new Vente();
+        vente.setId(venteDto.getId());
+        vente.setCode(venteDto.getCode());
+        vente.setDateVente(venteDto.getDateVente());
+        vente.setCommentaire(venteDto.getCommentaire());
+        return vente ;
+    }
 }
