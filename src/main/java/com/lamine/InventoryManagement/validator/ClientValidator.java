@@ -17,6 +17,7 @@ public class ClientValidator {
             errors.add("veuillez rensigner le prenom du client  ");
             errors.add("veuillez rensigner une adresse pour le client  ");
             errors.add("veuillez rensigner une adresse mail pour le client");
+            return errors;
         }
 
         if (!StringUtils.hasLength(clientDto.getName())){

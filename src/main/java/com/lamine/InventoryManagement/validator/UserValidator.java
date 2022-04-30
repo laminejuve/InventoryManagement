@@ -19,6 +19,7 @@ public class UserValidator {
             errors.add("veuillez rensigner un mot de passe pour l'utilisateur  ");
             errors.add("veuillez rensigner une adresse pour l'utilisateur  ");
             errors.add("veuillez rensigner une adresse mail pour l'utilisateur ");
+            return errors;
         }
 
         if (!StringUtils.hasLength(userDto.getNom())){

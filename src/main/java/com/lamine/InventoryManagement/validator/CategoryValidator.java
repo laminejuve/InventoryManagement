@@ -16,6 +16,7 @@ public class CategoryValidator {
         if (categoryDto == null){
             errors.add("veuillez rensigner le code du category ");
             errors.add("veuillez rensigner la designation du category  ");
+            return errors;
         }
 
         if (!StringUtils.hasLength(categoryDto.getCode())){

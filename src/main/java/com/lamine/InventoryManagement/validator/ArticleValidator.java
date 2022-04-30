@@ -19,6 +19,7 @@ public class ArticleValidator {
             errors.add("veuillez rensigner le prix unitaire TTC de l'article  ");
             errors.add("veuillez rensigner le taux Tva de l'article  ");
             errors.add("veuillez rensigner une categorie pour l'article ");
+            return errors;
         }
 
         if (!StringUtils.hasLength(articleDto.getCodeArticel())){
