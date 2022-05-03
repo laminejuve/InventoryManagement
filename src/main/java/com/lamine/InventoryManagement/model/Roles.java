@@ -14,6 +14,7 @@ import javax.persistence.ManyToOne;
 public class Roles extends AbstractEntity {
 
     private String roleName;
+    private Integer idEntreprise;
     @ManyToOne
     @JoinColumn (name = "idUser")
     private User user ;

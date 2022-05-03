@@ -22,6 +22,7 @@ public class LigneCommandeFornisseur extends AbstractEntity {
 
     private BigDecimal quantity;
     private BigDecimal prixUitaire ;
+    private Integer idEntreprise;
 
 
 

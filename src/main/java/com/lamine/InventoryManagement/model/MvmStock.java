@@ -20,7 +20,7 @@ public class MvmStock extends AbstractEntity {
 
     private Instant dateMvt ;
     private BigDecimal quantity;
-
+    private Integer idEntreprise;
     @ManyToOne
     @JoinColumn(name = "idArticle")
     private Article article;

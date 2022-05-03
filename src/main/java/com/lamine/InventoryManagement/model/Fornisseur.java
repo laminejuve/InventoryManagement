@@ -16,6 +16,7 @@ public class Fornisseur extends AbstractEntity {
 
     private String nom;
     private String prenom ;
+    private Integer idEntreprise;
     @Embedded
     private Adresse adresse ;
     private String photo;
