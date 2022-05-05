@@ -3,6 +3,7 @@ package com.lamine.InventoryManagement.exception;
 public enum ErrorCode {
 
     ARTICLE_NOT_FOUND(1000),
+    ARTICLE_NOT_VALID(1001),
     CATEGORY_NOT_FOUND(2000),
     CLIENT_NOT_FOUND(3000),
     COMMANDE_CLIENT_NOT_FOUND(4000),
