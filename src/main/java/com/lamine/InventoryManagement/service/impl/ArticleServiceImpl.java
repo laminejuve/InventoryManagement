@@ -48,7 +48,7 @@ public class ArticleServiceImpl implements ArticleService {
         Optional<Article> article = articleRepository.findById(id);
         return Optional.of(ArticleDto.fromEntity(article.get())).orElseThrow(
                 () -> new EntityNotFoundException(
-                        " no article with this id found in the daata base",ErrorCode.ARTICLE_NOT_FOUND));
+                        " no article with this id found in the data base",ErrorCode.ARTICLE_NOT_FOUND));
     }
 
     @Override

@@ -28,7 +28,7 @@ public class ArticleDto {
         return   ArticleDto.builder()
                 .id(article.getId())
                 .designation(article.getDesignation())
-                .codeArticel(article.getCodeArticel())
+                .codeArticel(article.getCodeArticle())
                 .prixUnitaireHt(article.getPrixUnitaireHt())
                 .prixUnitaireTtc(article.getPrixUnitaireTtc())
                 .photo(article.getPhoto())
@@ -43,7 +43,7 @@ public class ArticleDto {
         }
         Article article = new Article();
         article.setId(articleDto.getId());
-        article.setCodeArticel(articleDto.getCodeArticel());
+        article.setCodeArticle(articleDto.getCodeArticel());
         article.setDesignation(articleDto.getDesignation());
         article.setPhoto(articleDto.getPhoto());
         article.setPrixUnitaireHt(articleDto.getPrixUnitaireHt());

@@ -14,7 +14,7 @@ import java.math.BigDecimal;
 @Entity
 public class Article extends  AbstractEntity{
 
-    private String codeArticel;
+    private String codeArticle;
     private String designation ;
     private BigDecimal prixUnitaireHt ;
     private BigDecimal tauxTva ;
