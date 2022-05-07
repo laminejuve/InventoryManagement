@@ -9,9 +9,6 @@ import java.util.Optional;
 
 public interface ArticleRepository extends JpaRepository <Article , Integer> {
 
-    @Override
-    Optional<Article> findById(Integer integer);
-
     Optional<Article> findByCodeArticle(String codeArticle);
 
 }

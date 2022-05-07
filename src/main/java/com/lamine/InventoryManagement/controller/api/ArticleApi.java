@@ -14,15 +14,15 @@ public interface ArticleApi {
     @PostMapping (path = APP_ROOT + "/articles/create" ,consumes = MediaType.APPLICATION_JSON_VALUE,produces =MediaType.APPLICATION_JSON_VALUE )
     ArticleDto save(@RequestBody ArticleDto articleDto);
 
-    @GetMapping (path = APP_ROOT+"/articles/{id}" ,produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping (value = APP_ROOT+"/articles/{id}" ,produces = MediaType.APPLICATION_JSON_VALUE)
     ArticleDto findById(@PathVariable Integer id);
 
-    @GetMapping (path = APP_ROOT+"/articles/{codeArticle}" ,produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping (value = APP_ROOT+"/articles/{codeArticle}" ,produces = MediaType.APPLICATION_JSON_VALUE)
     ArticleDto findByCodeArticle(@PathVariable  String codeArticle);
 
-    @GetMapping (path = APP_ROOT+"/articles/all" ,produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping (value = APP_ROOT+"/articles/all" ,produces = MediaType.APPLICATION_JSON_VALUE)
     List<ArticleDto> findAll();
 
-    @DeleteMapping (path = APP_ROOT+"/articles/delete/{id}")
+    @DeleteMapping (value = APP_ROOT+"/articles/delete/{id}")
     void delete (@PathVariable Integer id);
 }
