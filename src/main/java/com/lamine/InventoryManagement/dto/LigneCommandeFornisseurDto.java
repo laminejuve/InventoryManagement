@@ -1,13 +1,9 @@
 package com.lamine.InventoryManagement.dto;
 
-import com.lamine.InventoryManagement.model.Article;
-import com.lamine.InventoryManagement.model.CommandeFornisseur;
 import com.lamine.InventoryManagement.model.LigneCommandeFornisseur;
 import lombok.Builder;
 import lombok.Data;
 
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import java.math.BigDecimal;
 
 @Builder

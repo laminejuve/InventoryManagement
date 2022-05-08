@@ -1,7 +1,6 @@
 package com.lamine.InventoryManagement.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.lamine.InventoryManagement.model.Adresse;
 import com.lamine.InventoryManagement.model.Article;
 import lombok.Builder;
 import lombok.Data;

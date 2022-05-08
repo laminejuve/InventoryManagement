@@ -1,13 +1,10 @@
 package com.lamine.InventoryManagement.dto;
 
-import com.lamine.InventoryManagement.model.LigneVente;
 import com.lamine.InventoryManagement.model.Vente;
 import lombok.Builder;
 import lombok.Data;
 
-import javax.persistence.OneToMany;
 import java.time.Instant;
-import java.util.List;
 
 @Builder
 @Data

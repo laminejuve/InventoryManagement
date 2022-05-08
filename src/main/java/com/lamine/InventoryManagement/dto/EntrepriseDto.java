@@ -1,8 +1,6 @@
 package com.lamine.InventoryManagement.dto;
 
-import com.lamine.InventoryManagement.model.Adresse;
 import com.lamine.InventoryManagement.model.Entreprise;
-import com.lamine.InventoryManagement.model.User;
 import lombok.Builder;
 import lombok.Data;
 import java.util.List;

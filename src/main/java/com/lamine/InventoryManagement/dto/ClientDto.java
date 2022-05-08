@@ -19,7 +19,7 @@ public class ClientDto {
     private String numTel ;
     private List<CommandeClientDto> commandeClients ;
 
-    public ClientDto fromEntity (Client client){
+    public static ClientDto fromEntity(Client client){
 
         if (client == null){
             // do an exception
@@ -35,7 +35,7 @@ public class ClientDto {
                 .photo(client.getPhoto())
                 .build();
     }
-    public Client toEntity(ClientDto clientDto){
+    public static Client toEntity(ClientDto clientDto){
 
         if (clientDto== null){
             // to do an exception

@@ -3,7 +3,6 @@ package com.lamine.InventoryManagement.dto;
 import com.lamine.InventoryManagement.model.Adresse;
 import lombok.Builder;
 import lombok.Data;
-import org.apache.tomcat.jni.Address;
 
 @Builder
 @Data

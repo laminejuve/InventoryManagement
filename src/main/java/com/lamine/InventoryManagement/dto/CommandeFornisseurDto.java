@@ -1,15 +1,9 @@
 package com.lamine.InventoryManagement.dto;
 
-import com.lamine.InventoryManagement.model.CommandeClient;
 import com.lamine.InventoryManagement.model.CommandeFornisseur;
-import com.lamine.InventoryManagement.model.Fornisseur;
-import com.lamine.InventoryManagement.model.LigneCommandeFornisseur;
 import lombok.Builder;
 import lombok.Data;
 
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import java.time.Instant;
 import java.util.List;
 

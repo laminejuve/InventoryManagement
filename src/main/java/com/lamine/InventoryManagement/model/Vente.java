@@ -3,9 +3,7 @@ package com.lamine.InventoryManagement.model;
 import lombok.*;
 
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
 import java.time.Instant;
-import java.util.List;
 
 @Data
 @NoArgsConstructor

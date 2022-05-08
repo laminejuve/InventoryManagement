@@ -1,14 +1,9 @@
 package com.lamine.InventoryManagement.dto;
 
-import com.lamine.InventoryManagement.model.Adresse;
-import com.lamine.InventoryManagement.model.Client;
-import com.lamine.InventoryManagement.model.CommandeFornisseur;
 import com.lamine.InventoryManagement.model.Fornisseur;
 import lombok.Builder;
 import lombok.Data;
 
-import javax.persistence.Embedded;
-import javax.persistence.OneToMany;
 import java.util.List;
 
 @Builder

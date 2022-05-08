@@ -4,11 +4,13 @@ import com.lamine.InventoryManagement.controller.api.CategoryApi;
 import com.lamine.InventoryManagement.dto.CategoryDto;
 import com.lamine.InventoryManagement.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @RestController
+@RequestMapping
 public class CategoyController implements CategoryApi {
 
     CategoryService categoryService;
@@ -21,6 +23,7 @@ public class CategoyController implements CategoryApi {
     public CategoryDto save(CategoryDto categoryDto) {
         return categoryService.save(categoryDto);
     }
+
 
     @Override
     public CategoryDto findById(Integer id) {
