@@ -20,7 +20,7 @@ public class CategoryDto {
 
     public static CategoryDto fromEntity(Category category){
         if (category == null ){
-            // TODO AN AXCEPTION
+            //  EXCEPTION
             return null;
         }
         return CategoryDto.builder()
@@ -32,7 +32,7 @@ public class CategoryDto {
 
     public static Category toEntity(CategoryDto categoryDto){
         if (categoryDto == null ){
-            // TODO AN AXCEPTION
+            //  EXCEPTION
             return null;
         }
         Category category = new Category();
