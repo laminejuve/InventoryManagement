@@ -19,7 +19,7 @@ public class FornisseurDto {
     private String numTel ;
     private List<CommandeFornisseurDto> commandeFornisseurs;
 
-    public FornisseurDto fromEntity (Fornisseur fornisseur){
+    public static FornisseurDto fromEntity(Fornisseur fornisseur){
 
         if (fornisseur == null){
             // do an exception
@@ -34,7 +34,7 @@ public class FornisseurDto {
                 .photo(fornisseur.getPhoto())
                 .build();
     }
-    public Fornisseur toEntity(FornisseurDto fornisseurDto){
+    public static Fornisseur toEntity(FornisseurDto fornisseurDto){
 
         if (fornisseurDto == null){
             // to do an exception
