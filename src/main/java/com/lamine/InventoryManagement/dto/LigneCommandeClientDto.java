@@ -16,7 +16,7 @@ public class LigneCommandeClientDto {
     private BigDecimal quantity;
     private BigDecimal prixUnitaire;
 
-    public LigneCommandeClientDto fromEntity (LigneCommandeClient ligneCommandeClient){
+    public static LigneCommandeClientDto fromEntity(LigneCommandeClient ligneCommandeClient){
         if (ligneCommandeClient == null ){
             // TODO an exception
             return null ;

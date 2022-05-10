@@ -16,7 +16,7 @@ public class CommandeClientDto {
     private ClientDto client ;
     private List<LigneCommandeClientDto> ligneCommandeClients ;
 
-    public CommandeClientDto fromEntity (CommandeClient commandeClient){
+    public static CommandeClientDto  fromEntity (CommandeClient commandeClient){
 
         if (commandeClient == null){
             // TODO an exception
@@ -29,7 +29,7 @@ public class CommandeClientDto {
                 .build();
     }
 
-    public CommandeClient toEntity (CommandeClientDto commandeClientDto){
+    public static CommandeClient toEntity (CommandeClientDto commandeClientDto){
         if (commandeClientDto == null){
             //TODO an exception
             return null;
