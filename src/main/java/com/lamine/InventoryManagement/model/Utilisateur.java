@@ -11,7 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @Entity
-public class User extends AbstractEntity {
+public class Utilisateur extends AbstractEntity {
 
     private String nom;
     private String prenom ;

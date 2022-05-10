@@ -18,7 +18,7 @@ public class EntrepriseDto {
     private String email ;
     private String numTel ;
     private String siteWeb ;
-    private List<UserDto> users ;
+    private List<UtilisateurDto> utilisateurs ;
 
     public static EntrepriseDto fromEntity(Entreprise entreprise){
         if(entreprise == null ){

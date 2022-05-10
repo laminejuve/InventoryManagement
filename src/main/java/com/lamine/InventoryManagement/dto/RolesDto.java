@@ -11,11 +11,11 @@ public class RolesDto {
 
     private Integer id ;
     private String roleName;
-    private UserDto user ;
+    private UtilisateurDto utilisateurDto ;
 
     public RolesDto fromEntity (Roles roles){
         if (roles == null){
-            //TODO an exception
+            // exception
             return null ;
         }
         return RolesDto.builder()
@@ -26,7 +26,7 @@ public class RolesDto {
 
     public Roles toEntity (RolesDto rolesDto){
         if (rolesDto == null){
-            //TODO an exception
+            // exception
             return null;
         }
         Roles roles = new Roles();
