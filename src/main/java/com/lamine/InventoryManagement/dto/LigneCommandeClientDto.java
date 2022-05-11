@@ -27,7 +27,7 @@ public class LigneCommandeClientDto {
                 .prixUnitaire(ligneCommandeClient.getPrixUnitaire())
                 .build();
     }
-    public LigneCommandeClient toEntity (LigneCommandeClientDto ligneCommandeClientDto){
+    public static LigneCommandeClient toEntity(LigneCommandeClientDto ligneCommandeClientDto){
         if(ligneCommandeClientDto == null ){
             //TODO an exception
             return null ;

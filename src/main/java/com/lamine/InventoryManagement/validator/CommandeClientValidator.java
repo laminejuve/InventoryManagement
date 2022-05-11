@@ -26,7 +26,7 @@ public class CommandeClientValidator {
             errors.add("veuillez rensigner le client pour cette commande  ");
         }
         if (commandeClientDto.getLigneCommandeClients() == null){
-            errors.add("veuillez rensigner lune ligne commande pour cette commande  ");
+            errors.add("veuillez rensigner une ligne commande pour cette commande  ");
         }
 
         return errors ;
