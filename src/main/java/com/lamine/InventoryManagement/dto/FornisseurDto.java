@@ -18,6 +18,7 @@ public class FornisseurDto {
     private String mail ;
     private String numTel ;
     private List<CommandeFornisseurDto> commandeFornisseurs;
+    private Integer idEntreprise;
 
     public static FornisseurDto fromEntity(Fornisseur fornisseur){
 
@@ -32,6 +33,7 @@ public class FornisseurDto {
                 .mail(fornisseur.getMail())
                 .numTel(fornisseur.getNumTel())
                 .photo(fornisseur.getPhoto())
+                .idEntreprise(fornisseur.getIdEntreprise())
                 .build();
     }
     public static Fornisseur toEntity(FornisseurDto fornisseurDto){
@@ -47,6 +49,7 @@ public class FornisseurDto {
         fornisseur.setMail(fornisseurDto.getMail());
         fornisseur.setPhoto(fornisseurDto.getPhoto());
         fornisseur.setNumTel(fornisseurDto.getNumTel());
+        fornisseur.setIdEntreprise(fornisseurDto.getIdEntreprise());
         return fornisseur;
     }
 }

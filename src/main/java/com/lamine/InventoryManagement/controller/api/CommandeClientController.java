@@ -32,7 +32,5 @@ public class CommandeClientController implements  CommandeClientApi{
     }
 
     @Override
-    public void delete(Integer id) {
-      commandeClientService.delete(id);
-    }
+    public void delete(Integer id) { commandeClientService.delete(id); }
 }

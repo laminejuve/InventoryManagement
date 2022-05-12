@@ -17,6 +17,7 @@ public class MvmStockDto {
     private BigDecimal quantity;
     private ArticleDto article;
     private TypeMvtStk typeMvt ;
+    private Integer idEntreprise;
 
     public MvmStockDto fromEntity (MvmStock mvmStock){
         if (mvmStock == null){
@@ -27,6 +28,7 @@ public class MvmStockDto {
                 .id(mvmStock.getId())
                 .dateMvt(mvmStock.getDateMvt())
                 .quantity(mvmStock.getQuantity())
+                .idEntreprise(mvmStock.getIdEntreprise())
                 .build();
     }
     public MvmStock toEntity (MvmStockDto mvmStockDto){
@@ -38,6 +40,7 @@ public class MvmStockDto {
         mvmStock.setId(mvmStockDto.getId());
         mvmStock.setDateMvt(mvmStockDto.getDateMvt());
         mvmStock.setQuantity(mvmStockDto.getQuantity());
+        mvmStock.setIdEntreprise(mvmStockDto.getIdEntreprise());
         return mvmStock ;
     }
 }

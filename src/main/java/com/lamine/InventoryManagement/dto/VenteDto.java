@@ -14,6 +14,7 @@ public class VenteDto {
     private String code;
     private Instant dateVente;
     private String commentaire;
+    private Integer idEntreprise;
 
     public VenteDto fromEntity (Vente vente){
         if (vente == null){
@@ -25,6 +26,7 @@ public class VenteDto {
                 .code(vente.getCode())
                 .dateVente(getDateVente())
                 .commentaire(vente.getCommentaire())
+                .idEntreprise(vente.getIdEntreprise())
                 .build();
     }
     public Vente toEntity (VenteDto venteDto){
@@ -37,6 +39,7 @@ public class VenteDto {
         vente.setCode(venteDto.getCode());
         vente.setDateVente(venteDto.getDateVente());
         vente.setCommentaire(venteDto.getCommentaire());
+        vente.setIdEntreprise(venteDto.getIdEntreprise());
         return vente ;
     }
 }

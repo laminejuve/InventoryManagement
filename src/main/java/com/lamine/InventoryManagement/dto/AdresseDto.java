@@ -14,6 +14,7 @@ public class AdresseDto {
     private String codePostale;
     private String pays;
 
+
     public AdresseDto fromEntity (Adresse adresse){
         if (adresse == null){
             // exception

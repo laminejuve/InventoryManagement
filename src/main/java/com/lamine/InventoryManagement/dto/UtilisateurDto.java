@@ -21,6 +21,7 @@ public class UtilisateurDto {
     private String numTel ;
     private List<RolesDto> roles ;
     private EntrepriseDto entreprise;
+    private Integer idEntreprise;
 
     public static UtilisateurDto fromEntity(Utilisateur utilisateur){
         if (utilisateur == null ){

@@ -18,6 +18,7 @@ public class ClientDto {
     private String mail ;
     private String numTel ;
     private List<CommandeClientDto> commandeClients ;
+    private Integer idEntreprise;
 
     public static ClientDto fromEntity(Client client){
 
@@ -33,6 +34,7 @@ public class ClientDto {
                 .mail(client.getMail())
                 .numTel(client.getNumTel())
                 .photo(client.getPhoto())
+               .idEntreprise(client.getIdEntreprise())
                 .build();
     }
     public static Client toEntity(ClientDto clientDto){
@@ -49,6 +51,7 @@ public class ClientDto {
         client.setMail(clientDto.getMail());
         client.setPhoto(clientDto.getPhoto());
         client.setNumTel(clientDto.getNumTel());
+        client.setIdEntreprise(clientDto.getIdEntreprise());
         return client;
     }
 }

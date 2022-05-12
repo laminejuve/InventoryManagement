@@ -16,6 +16,7 @@ public class CommandeFornisseurDto {
     private Instant dateCommandeFornisseur ;
     private FornisseurDto fornisseur;
     private List<LigneCommandeFornisseurDto> ligneCommandeFornisseurs ;
+    private Integer idEntreprise;
 
     public CommandeFornisseurDto fromEntity (CommandeFornisseur commandeFornisseur){
 
@@ -27,6 +28,7 @@ public class CommandeFornisseurDto {
                 .id(commandeFornisseur.getId())
                 .code(commandeFornisseur.getCode())
                 .dateCommandeFornisseur(commandeFornisseur.getDateCommandeFornisseur())
+                .idEntreprise(commandeFornisseur.getIdEntreprise())
                 .build();
     }
 
@@ -39,6 +41,7 @@ public class CommandeFornisseurDto {
         commandeFornisseur.setId(commandeFornisseurDto.getId());
         commandeFornisseur.setCode(commandeFornisseurDto.getCode());
         commandeFornisseur.setDateCommandeFornisseur(commandeFornisseurDto.getDateCommandeFornisseur());
+        commandeFornisseur.setIdEntreprise(commandeFornisseurDto.getIdEntreprise());
         return commandeFornisseur;
     }
 }
