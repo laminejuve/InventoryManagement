@@ -25,4 +25,6 @@ public class Article extends  AbstractEntity{
     @JoinColumn (name = "idCategory")
     private Category category ;
 
+
+
 }

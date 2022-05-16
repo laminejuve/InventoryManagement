@@ -9,6 +9,7 @@ import com.lamine.InventoryManagement.exception.ErrorCode;
 import com.lamine.InventoryManagement.model.Article;
 import com.lamine.InventoryManagement.model.Client;
 import com.lamine.InventoryManagement.model.CommandeClient;
+import com.lamine.InventoryManagement.model.LigneCommandeClient;
 import com.lamine.InventoryManagement.repository.ArticleRepository;
 import com.lamine.InventoryManagement.repository.ClientRepository;
 import com.lamine.InventoryManagement.repository.CommandeClientRepository;
@@ -52,8 +53,6 @@ public class CommandeClientServiceImpl implements CommandeClientService {
         if (commandeClient.isPresent()){
             CommandeClientDto commandeClientDto = CommandeClientDto.fromEntity(commandeClient.get());
             commandeClientDto.setClient(ClientDto.fromEntity(commandeClient.get().getClient()));
-            commandeClientDto.setLigneCommandeClients(commandeClient.get().getLigneCommandeClients().stream().map(
-                    LigneCommandeClientDto::fromEntity).collect(Collectors.toList()));
             return commandeClientDto ;
         }
         throw new EntityNotFoundException("no commande client with this id",ErrorCode.COMMANDE_CLIENT_NOT_FOUND);
@@ -66,8 +65,6 @@ public class CommandeClientServiceImpl implements CommandeClientService {
         commandeClients.forEach(commandeClient -> {
             CommandeClientDto commandeClientDto = CommandeClientDto.fromEntity(commandeClient);
             commandeClientDto.setClient(ClientDto.fromEntity(commandeClient.getClient()));
-            commandeClientDto.setLigneCommandeClients(commandeClient.getLigneCommandeClients().stream().map(
-                    LigneCommandeClientDto::fromEntity).collect(Collectors.toList()));
             commandeClientDTOs.add(commandeClientDto);
         });
         return commandeClientDTOs ;
@@ -101,10 +98,21 @@ public class CommandeClientServiceImpl implements CommandeClientService {
         );
         CommandeClient commandeClient = CommandeClientDto.toEntity(commandeClientDto);
         commandeClient.setClient(ClientDto.toEntity(commandeClientDto.getClient()));
+        CommandeClient savedCommandeClient = commandeClientRepository.save(commandeClient);
+        commandeClientDto.getLigneCommandeClients().forEach(ligneCmdClt -> {
+            LigneCommandeClient ligneCommandeClient = LigneCommandeClientDto.toEntity(ligneCmdClt);
+            ligneCommandeClient.setCommandeClient(savedCommandeClient);
+            ligneCommandeClientRepository.save(ligneCommandeClient);
+        });
+        return CommandeClientDto.fromEntity(savedCommandeClient) ;
+
+        /*CommandeClient commandeClient = CommandeClientDto.toEntity(commandeClientDto);
+        commandeClient.setClient(ClientDto.toEntity(commandeClientDto.getClient()));
         commandeClient.setLigneCommandeClients(commandeClientDto.getLigneCommandeClients().stream().map(
                 LigneCommandeClientDto::toEntity).collect(Collectors.toList()));
         commandeClient.getLigneCommandeClients().forEach(ligneCommandeClient -> ligneCommandeClientRepository.save(ligneCommandeClient));
-        return CommandeClientDto.fromEntity(commandeClientRepository.save(commandeClient));
+        return CommandeClientDto.fromEntity(commandeClientRepository.save(commandeClient));*/
+
     }
 
     @Override

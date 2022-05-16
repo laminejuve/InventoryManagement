@@ -29,7 +29,7 @@ public class LigneCommandeFornisseurDto {
                 .idEntreprise(ligneCommandeFornisseur.getIdEntreprise())
                 .build();
     }
-    public LigneCommandeFornisseur toEntity (LigneCommandeFornisseurDto ligneCommandeFornisseurDto){
+    public static LigneCommandeFornisseur toEntity(LigneCommandeFornisseurDto ligneCommandeFornisseurDto){
         if(ligneCommandeFornisseurDto == null ){
             //TODO an exception
             return null ;
