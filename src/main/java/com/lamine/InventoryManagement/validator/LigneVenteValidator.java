@@ -21,6 +21,10 @@ public class LigneVenteValidator {
         if (ligneVenteDto.getVente()==null){
             errors.add("veuillez rensigner vente ");
         }
+
+        if (ligneVenteDto.getArticle()==null){
+            errors.add("veuillez rensigner an article for this vente ");
+        }
         if (ligneVenteDto.getQuantity() == null){
             errors.add("veuillez rensigner une quantité  ");
         }
