@@ -19,15 +19,6 @@ import java.io.InputStream;
 @Slf4j
 public class FlickrServiceImpl implements FlickrService {
 
-    @Value("${flickr.apiKey}")
-    private String apiKey ;
-    @Value("${flickr.apiSecret}")
-    private String apiSecret ;
-    @Value("${flickr.appKey}")
-    private String appKey ;
-    @Value("${flickr.appSecret}")
-    private String appSecret ;
-
     private Flickr flickr;
     @Autowired
     public FlickrServiceImpl(Flickr flickr) {

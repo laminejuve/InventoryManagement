@@ -9,9 +9,11 @@ import java.util.List;
 
 import static com.lamine.InventoryManagement.utils.Constants.APP_ROOT;
 
+
 public interface ArticleApi {
 
     @PostMapping (path = APP_ROOT + "/article/create" ,consumes = MediaType.APPLICATION_JSON_VALUE,produces =MediaType.APPLICATION_JSON_VALUE )
+   // @ApiOperation(value = "Save an Article" , notes = "this methode can save a new article or update and old one",response = ArticleDto.class)
     ArticleDto save(@RequestBody ArticleDto articleDto);
 
     @GetMapping (value = APP_ROOT+"/article/{id}" ,produces = MediaType.APPLICATION_JSON_VALUE)

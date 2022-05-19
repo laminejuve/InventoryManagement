@@ -1,5 +1,6 @@
-package com.lamine.InventoryManagement.controller.api;
+package com.lamine.InventoryManagement.controller;
 
+import com.lamine.InventoryManagement.controller.api.CommandeClientApi;
 import com.lamine.InventoryManagement.dto.CommandeClientDto;
 import com.lamine.InventoryManagement.service.CommandeClientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-public class CommandeClientController implements  CommandeClientApi{
+public class CommandeClientController implements CommandeClientApi {
 
     CommandeClientService commandeClientService;
     @Autowired
