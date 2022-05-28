@@ -19,11 +19,9 @@ public class AbstractEntity {
     private Integer id;
 
     @CreatedDate
-    @Column (nullable = false)
-    @JsonIgnore
+    @Column (nullable = false , updatable = false)
     private Instant creationDate ;
 
     @LastModifiedDate
-    @JsonIgnore
     private Instant lastModifiedDate ;
 }
