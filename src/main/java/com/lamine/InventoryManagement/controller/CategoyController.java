@@ -30,10 +30,10 @@ public class CategoyController implements CategoryApi {
         return categoryService.findById(id);
     }
 
-    @Override
+   /* @Override
     public CategoryDto findByCode(String code) {
         return categoryService.findByCode(code);
-    }
+    }*/
 
     @Override
     public List<CategoryDto> findAll() {

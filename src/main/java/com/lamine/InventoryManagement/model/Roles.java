@@ -18,4 +18,5 @@ public class Roles extends AbstractEntity {
     @ManyToOne
     @JoinColumn (name = "idUser")
     private Utilisateur user ;
+
 }

@@ -53,8 +53,8 @@ public class CategoryServiceImpl implements CategoryService {
 
     }
 
-    @Override
-    public CategoryDto findByCode(String code) {
+
+   /* public CategoryDto findByCode(String code) {
         if(!StringUtils.hasLength(code)){
             log.error("Category code is null");
             return null ;
@@ -64,7 +64,7 @@ public class CategoryServiceImpl implements CategoryService {
         return Optional.of(CategoryDto.fromEntity(category.get())).orElseThrow(
                 () -> new EntityNotFoundException("category not exist with this code", ErrorCode.CATEGORY_NOT_FOUND));
 
-    }
+    }*/
 
     @Override
     public List<CategoryDto> findAll() {

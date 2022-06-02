@@ -28,10 +28,10 @@ public class ArticleController implements ArticleApi {
         return articleService.findById(id);
     }
 
-    @Override
+   /* @Override
     public ArticleDto findByCodeArticle(String codeArticle) {
         return articleService.findByCodeArticle(codeArticle);
-    }
+    }*/
 
     @Override
     public List<ArticleDto> findAll() {

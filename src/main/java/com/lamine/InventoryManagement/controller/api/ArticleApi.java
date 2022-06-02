@@ -19,9 +19,9 @@ public interface ArticleApi {
     @GetMapping (value = APP_ROOT+"/article/{id}" ,produces = MediaType.APPLICATION_JSON_VALUE)
     ArticleDto findById(@PathVariable Integer id);
 
-    @GetMapping (value = APP_ROOT+"/article/{codeArticle}" ,produces = MediaType.APPLICATION_JSON_VALUE)
+   /* @GetMapping (value = APP_ROOT+"/article/{codeArticle}" ,produces = MediaType.APPLICATION_JSON_VALUE)
     ArticleDto findByCodeArticle(@PathVariable  String codeArticle);
-
+*/
     @GetMapping (value = APP_ROOT+"/article/all" ,produces = MediaType.APPLICATION_JSON_VALUE)
     List<ArticleDto> findAll();
 

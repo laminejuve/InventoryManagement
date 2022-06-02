@@ -51,7 +51,7 @@ public class ArticleServiceImpl implements ArticleService {
                         " no article with this id found in the data base",ErrorCode.ARTICLE_NOT_FOUND));
     }
 
-    @Override
+/*    @Override
     public ArticleDto findByCodeArticle(String codeArticle) {
 
         if (!StringUtils.hasLength(codeArticle)){
@@ -63,7 +63,7 @@ public class ArticleServiceImpl implements ArticleService {
         return Optional.of(ArticleDto.fromEntity(article.get())).orElseThrow(
                 () -> new EntityNotFoundException(
                         " no article with this code found in the data base",ErrorCode.ARTICLE_NOT_FOUND));
-    }
+    }*/
 
 
     @Override
