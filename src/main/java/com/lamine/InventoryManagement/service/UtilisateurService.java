@@ -10,5 +10,6 @@ public interface UtilisateurService {
     List<UtilisateurDto> getAllUtilisateurs ();
     UtilisateurDto create (UtilisateurDto utilisateurDto);
     void delete (Integer id);
-    
+
+    UtilisateurDto getUtilisateurByEmail (String email);
 }

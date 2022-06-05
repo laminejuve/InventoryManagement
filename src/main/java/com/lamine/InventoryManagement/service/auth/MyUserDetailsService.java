@@ -1,30 +1,38 @@
 package com.lamine.InventoryManagement.service.auth;
 
-import com.lamine.InventoryManagement.exception.EntityNotFoundException;
-import com.lamine.InventoryManagement.exception.ErrorCode;
-import com.lamine.InventoryManagement.model.Utilisateur;
-import com.lamine.InventoryManagement.repository.UtilisateurRepository;
+import com.lamine.InventoryManagement.dto.UtilisateurDto;
+import com.lamine.InventoryManagement.model.auth.ExtendeUser;
+import com.lamine.InventoryManagement.service.UtilisateurService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 
 @Service
 public class MyUserDetailsService implements UserDetailsService {
 
     @Autowired
-    UtilisateurRepository utilisateurRepository;
+    UtilisateurService utilisateurService;
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
-        Utilisateur user = utilisateurRepository.findByMail(email)
-                 .orElseThrow(()-> new EntityNotFoundException("**not found**", ErrorCode.UTILISATEUR_NOT_FOUND));
-        return new User(user.getMail(),user.getMotDePasse(), Collections.emptyList());
+        UtilisateurDto user = utilisateurService.getUtilisateurByEmail(email);
+
+        System.out.println(user.getMail() +" *** "+user.getMotDePasse());
+
+        List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+
+//        user.getRoles().forEach(role -> authorities.add(new SimpleGrantedAuthority(role.getRoleName())));
+
+        return new ExtendeUser (user.getMail(),user.getMotDePasse(), authorities);
 
     }
 }
