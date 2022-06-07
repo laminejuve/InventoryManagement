@@ -10,6 +10,9 @@ import com.lamine.InventoryManagement.service.UtilisateurService;
 import com.lamine.InventoryManagement.validator.UtilisateurValidator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,9 +23,10 @@ import java.util.stream.Collectors;
 @Slf4j
 public class UtilisateurServiceImpl implements UtilisateurService {
 
+
     UtilisateurRepository utilisateurRepository;
     @Autowired
-    public UtilisateurServiceImpl(UtilisateurRepository utilisateurRepository) {
+    public UtilisateurServiceImpl(UtilisateurRepository utilisateurRepository ) {
         this.utilisateurRepository = utilisateurRepository;
     }
 
@@ -52,7 +56,9 @@ public class UtilisateurServiceImpl implements UtilisateurService {
            log.error("utilisateur not valid{}",utilisateurDto);
            throw  new EntityInvalidException("utilisateur not valid",ErrorCode.UTILISATEUR_NOT_VALID,errors);
        }
-        return UtilisateurDto.fromEntity(utilisateurRepository.save(UtilisateurDto.toEntity(utilisateurDto)));
+       utilisateurDto.setMotDePasse(passwordEncoder().encode(utilisateurDto.getMotDePasse()));
+       return UtilisateurDto.fromEntity(utilisateurRepository.save(UtilisateurDto.toEntity(utilisateurDto)));
+
     }
 
     @Override
@@ -68,10 +74,14 @@ public class UtilisateurServiceImpl implements UtilisateurService {
     @Override
     public UtilisateurDto getUtilisateurByEmail(String email) {
 
-        utilisateurRepository.findByMail(email);
-        return utilisateurRepository.findByMail(email).map(UtilisateurDto::fromEntity)
+       Optional<Utilisateur> utilisateur = utilisateurRepository.findByMail(email);
+        return utilisateur.map(UtilisateurDto::fromEntity)
                 .orElseThrow(
                 ()-> new EntityNotFoundException("No user with this Login",ErrorCode.UTILISATEUR_NOT_FOUND)
         );
+    }
+
+    PasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
     }
 }

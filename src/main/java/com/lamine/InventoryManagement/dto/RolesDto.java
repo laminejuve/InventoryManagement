@@ -13,7 +13,7 @@ public class RolesDto {
     private String roleName;
     private UtilisateurDto utilisateurDto ;
 
-    public RolesDto fromEntity (Roles roles){
+    public static RolesDto fromEntity(Roles roles){
         if (roles == null){
             // exception
             return null ;
