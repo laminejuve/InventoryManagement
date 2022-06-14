@@ -47,10 +47,12 @@ public class CategoryServiceImpl implements CategoryService {
             return null ;
         }
         Optional<Category> category = categoryRepository.findById(id);
+        return CategoryDto.fromEntity(category.orElseThrow(() -> new EntityNotFoundException("category not exist with this id", ErrorCode.CATEGORY_NOT_FOUND)));
 
-        return Optional.of(CategoryDto.fromEntity(category.get())).orElseThrow(
-                () -> new EntityNotFoundException("category not exist with this id", ErrorCode.CATEGORY_NOT_FOUND));
-
+        /*if (!category.isEmpty()){
+            return CategoryDto.fromEntity(category.get());
+        }
+        throw  new EntityNotFoundException("category not exist with this id", ErrorCode.CATEGORY_NOT_FOUND);*/
     }
 
 

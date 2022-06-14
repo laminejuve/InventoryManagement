@@ -2,6 +2,7 @@ package com.lamine.InventoryManagement.controller;
 
 import com.lamine.InventoryManagement.dto.auth.AuthenticationRequest;
 import com.lamine.InventoryManagement.dto.auth.AuthenticationResponse;
+import com.lamine.InventoryManagement.model.auth.ExtendeUser;
 import com.lamine.InventoryManagement.service.auth.MyUserDetailsService;
 import com.lamine.InventoryManagement.utils.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +41,7 @@ public class AuthenticationController {
 
      final  UserDetails userDetails = myUserDetailsService.loadUserByUsername(request.getLogin());
 
-     final String jwt = jwtUtil.generateToken(userDetails);
+     final String jwt = jwtUtil.generateToken((ExtendeUser)userDetails);
 
      return ResponseEntity.ok(AuthenticationResponse.builder().accessToken(jwt).build());
     }

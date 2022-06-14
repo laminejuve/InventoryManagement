@@ -33,9 +33,9 @@ public class EntrepriseServiceImpl implements EntrepriseService {
             return null;
         }
         Optional<Entreprise> entreprise = entrepriseRepository.findById(id);
-        return Optional.of(EntrepriseDto.fromEntity(entreprise.get())).orElseThrow(
+        return EntrepriseDto.fromEntity(entreprise.orElseThrow(
                 ()-> new EntityNotFoundException("there is no Entreprise with this id", ErrorCode.ENTREPRISE_NOT_FOUND)
-        );
+        ));
     }
 
     @Override

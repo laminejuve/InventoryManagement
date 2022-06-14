@@ -34,9 +34,9 @@ public class ClientServiceImpl implements ClientService {
             return null;
         }
         Optional<Client> client = clientRepository.findById(id);
-        return Optional.of(ClientDto.fromEntity(client.get())).orElseThrow(
+        return ClientDto.fromEntity(client.orElseThrow(
                 ()->  new EntityNotFoundException("there is no Client with this ID", ErrorCode.CLIENT_NOT_FOUND)
-        );
+        ));
     }
 
     @Override

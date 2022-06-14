@@ -2,6 +2,8 @@ package com.lamine.InventoryManagement.exception;
 
 import lombok.Getter;
 
+import java.util.function.Supplier;
+
 public class EntityNotFoundException extends  RuntimeException {
     @Getter
     private ErrorCode errorCode ;

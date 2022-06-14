@@ -34,9 +34,9 @@ public class FornisseurServiceImpl implements FornisseurService {
             return null;
         }
         Optional<Fornisseur> fornisseur = fornisseurRepository.findById(id);
-        return Optional.of(FornisseurDto.fromEntity(fornisseur.get())).orElseThrow(
+        return FornisseurDto.fromEntity(fornisseur.orElseThrow(
                 ()-> new EntityNotFoundException("no Fornisseur with this id", ErrorCode.FORNISSEUR_NOT_FOUND)
-        );
+        ));
     }
 
     @Override
