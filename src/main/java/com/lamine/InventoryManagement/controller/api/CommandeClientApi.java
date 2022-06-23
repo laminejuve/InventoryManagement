@@ -1,6 +1,7 @@
 package com.lamine.InventoryManagement.controller.api;
 
 import com.lamine.InventoryManagement.dto.CommandeClientDto;
+import com.lamine.InventoryManagement.model.EtatCommande;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,6 +20,9 @@ public interface CommandeClientApi {
 
     @PostMapping(value = APP_ROOT+"/commandeClients/create",consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
     CommandeClientDto create(@RequestBody CommandeClientDto commandeClientDto);
+
+    @PatchMapping(value = APP_ROOT+"/commandeClients/update/{idCommande}/{etatCommande}",consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
+    CommandeClientDto create(@PathVariable Integer idCommande,@PathVariable EtatCommande etatCommande);
 
     @DeleteMapping(value = APP_ROOT+"/commandeClients/delete/{id}")
     void delete(@PathVariable Integer id);

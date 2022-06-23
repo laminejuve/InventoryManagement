@@ -1,4 +1,5 @@
 package com.lamine.InventoryManagement.model;
 
-public class TypeMvtStk extends AbstractEntity{
+public enum TypeMvtStk {
+    ENTREE ,SORTIE
 }

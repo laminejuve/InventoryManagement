@@ -2,6 +2,7 @@ package com.lamine.InventoryManagement.controller;
 
 import com.lamine.InventoryManagement.controller.api.CommandeClientApi;
 import com.lamine.InventoryManagement.dto.CommandeClientDto;
+import com.lamine.InventoryManagement.model.EtatCommande;
 import com.lamine.InventoryManagement.service.CommandeClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,6 +31,11 @@ public class CommandeClientController implements CommandeClientApi {
     @Override
     public CommandeClientDto create(CommandeClientDto commandeClientDto) {
         return commandeClientService.create(commandeClientDto);
+    }
+
+    @Override
+    public CommandeClientDto create(Integer idCommande, EtatCommande etatCommande) {
+        return commandeClientService.updateEtatCommande(idCommande,etatCommande);
     }
 
     @Override

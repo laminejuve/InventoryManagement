@@ -1,6 +1,7 @@
 package com.lamine.InventoryManagement.dto;
 
 import com.lamine.InventoryManagement.model.CommandeClient;
+import com.lamine.InventoryManagement.model.EtatCommande;
 import lombok.Builder;
 import lombok.Data;
 import java.time.Instant;
@@ -17,6 +18,8 @@ public class CommandeClientDto {
     private List<LigneCommandeClientDto> ligneCommandeClients ;
     private Integer idEntreprise;
 
+    private EtatCommande etatCommande ;
+
     public static CommandeClientDto  fromEntity (CommandeClient commandeClient){
 
         if (commandeClient == null){
@@ -28,6 +31,7 @@ public class CommandeClientDto {
                 .code(commandeClient.getCode())
                 .dateCommande(commandeClient.getDateCommande())
                 .idEntreprise(commandeClient.getIdEntreprise())
+                .etatCommande(commandeClient.getEtatCommande())
                 .build();
     }
 
@@ -41,6 +45,11 @@ public class CommandeClientDto {
         commandeClient.setCode(commandeClientDto.getCode());
         commandeClient.setDateCommande(commandeClientDto.getDateCommande());
         commandeClient.setIdEntreprise(commandeClientDto.getIdEntreprise());
+        commandeClient.setEtatCommande(commandeClientDto.getEtatCommande());
         return commandeClient;
+    }
+
+    public boolean isCommandeLiveree (){
+        return EtatCommande.LIVREE.equals(this.etatCommande);
     }
 }
