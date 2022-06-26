@@ -14,5 +14,8 @@ public interface CommandeClientService {
     void delete (Integer id);
     CommandeClientDto updateEtatCommande (Integer idCommande , EtatCommande etatCommande);
     CommandeClientDto updateQuantityCommande (Integer idCommande , Integer idLigneCommande , BigDecimal quantity);
+    CommandeClientDto updateClient (Integer idCommande , Integer idClient);
+
+
 
 }

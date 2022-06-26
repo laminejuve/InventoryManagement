@@ -7,6 +7,7 @@ import com.lamine.InventoryManagement.service.CommandeClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
@@ -34,8 +35,19 @@ public class CommandeClientController implements CommandeClientApi {
     }
 
     @Override
-    public CommandeClientDto create(Integer idCommande, EtatCommande etatCommande) {
+    public CommandeClientDto updateEtatCommande(Integer idCommande, EtatCommande etatCommande) {
         return commandeClientService.updateEtatCommande(idCommande,etatCommande);
+    }
+
+
+    @Override
+    public CommandeClientDto updateQuantity(Integer idCommande, Integer idLigneCommande, BigDecimal quantity) {
+        return commandeClientService.updateQuantityCommande(idCommande,idLigneCommande,quantity);
+    }
+
+    @Override
+    public CommandeClientDto updateClient(Integer idCommande, Integer idClient) {
+        return commandeClientService.updateClient(idCommande,idClient);
     }
 
     @Override

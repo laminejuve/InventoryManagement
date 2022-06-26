@@ -188,4 +188,32 @@ public class CommandeClientServiceImpl implements CommandeClientService {
         ligneCommandeClientRepository.save(ligneCommandeClient);
         return cmdClient;
     }
+
+    @Override
+    public CommandeClientDto updateClient(Integer idCommande, Integer idClient) {
+
+        if (idCommande == null){
+            log.error(" Commande client id is null ");
+            throw new InvalidOperationException("impossible to update a client commande with an ID null ",ErrorCode.COMMANDE_CLIENT_NOT_MODIFIABLE);
+        }
+
+        if (idClient == null){
+            log.error("the client id is null ");
+            throw new InvalidOperationException("impossible to update a client  with a null id client ",ErrorCode.COMMANDE_CLIENT_NOT_MODIFIABLE);
+        }
+
+        CommandeClientDto cmdClient = getCmdClient(idCommande);
+
+        if (cmdClient.isCommandeLiveree()){
+            throw new InvalidOperationException("impossible to update a client comande when it was delivred",ErrorCode.COMMANDE_CLIENT_NOT_MODIFIABLE);
+        }
+
+        Optional<Client> clientOptional = clientRepository.findById(idClient);
+        if (clientOptional.isEmpty()){
+            throw new EntityNotFoundException("no Client found with this id" ,ErrorCode.CLIENT_NOT_FOUND);
+        }
+        cmdClient.setClient(ClientDto.fromEntity(clientOptional.get()));
+
+        return CommandeClientDto.fromEntity(commandeClientRepository.save(CommandeClientDto.toEntity(cmdClient)));
+    }
 }
