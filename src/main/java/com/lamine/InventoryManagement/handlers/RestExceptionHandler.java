@@ -2,6 +2,7 @@ package com.lamine.InventoryManagement.handlers;
 
 import com.lamine.InventoryManagement.exception.EntityInvalidException;
 import com.lamine.InventoryManagement.exception.EntityNotFoundException;
+import com.lamine.InventoryManagement.exception.InvalidOperationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -36,5 +37,8 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
                 .build();
         return new ResponseEntity<>(errorDto , badRequest);
     }
+
+
+
 
 }

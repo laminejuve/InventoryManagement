@@ -16,6 +16,8 @@ public interface CommandeClientService {
     CommandeClientDto updateQuantityCommande (Integer idCommande , Integer idLigneCommande , BigDecimal quantity);
     CommandeClientDto updateClient (Integer idCommande , Integer idClient);
 
+    CommandeClientDto updateArticle (Integer idCommande , Integer idLigneCommande , Integer newIdArticle);
+
 
 
 }

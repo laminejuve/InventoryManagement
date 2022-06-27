@@ -51,5 +51,10 @@ public class CommandeClientController implements CommandeClientApi {
     }
 
     @Override
+    public CommandeClientDto updateArticle(Integer idCommande, Integer idLigneCommande, Integer idArticle) {
+        return commandeClientService.updateArticle(idCommande,idLigneCommande,idArticle);
+    }
+
+    @Override
     public void delete(Integer id) { commandeClientService.delete(id); }
 }

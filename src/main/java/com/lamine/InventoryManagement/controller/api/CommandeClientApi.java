@@ -31,6 +31,9 @@ public interface CommandeClientApi {
     @PatchMapping(value = APP_ROOT+"/commandeClients/update/client/{idCommande}/{idClient}",consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
     CommandeClientDto updateClient(@PathVariable Integer idCommande,@PathVariable Integer idClient);
 
+    @PatchMapping(value = APP_ROOT+"/commandeClients/update/article/{idCommande}/{idLigneCommande}/{idArticle}",consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
+    CommandeClientDto updateArticle(@PathVariable Integer idCommande,@PathVariable Integer idLigneCommande ,@PathVariable Integer idArticle);
+
     @DeleteMapping(value = APP_ROOT+"/commandeClients/delete/{id}")
     void delete(@PathVariable Integer id);
 
