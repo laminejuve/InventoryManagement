@@ -2,6 +2,7 @@ package com.lamine.InventoryManagement.controller;
 
 import com.lamine.InventoryManagement.controller.api.CommandeClientApi;
 import com.lamine.InventoryManagement.dto.CommandeClientDto;
+import com.lamine.InventoryManagement.dto.LigneCommandeClientDto;
 import com.lamine.InventoryManagement.model.EtatCommande;
 import com.lamine.InventoryManagement.service.CommandeClientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,5 +57,15 @@ public class CommandeClientController implements CommandeClientApi {
     }
 
     @Override
+    public CommandeClientDto deleteArticle(Integer idCommande, Integer idLigneCommande) {
+        return commandeClientService.deleteArticle(idCommande,idLigneCommande);
+    }
+
+    @Override
     public void delete(Integer id) { commandeClientService.delete(id); }
+
+    @Override
+    public List<LigneCommandeClientDto> findAllLigneCommandeClientByCommandeClientId(Integer idCommande) {
+        return commandeClientService.findAllLigneCommandeClientByCommandeClientId(idCommande);
+    }
 }

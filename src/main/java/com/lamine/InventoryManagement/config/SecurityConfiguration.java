@@ -37,12 +37,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.authorizeRequests()
                 .antMatchers("/**/authenticate/token"
-                                        ,"/**/swagger-ui/**")
+                                        ,"**/swagger-ui.html/**")
                 .permitAll()
                 .anyRequest().authenticated()
                 .and().formLogin();
 
-        http.addFilterBefore(jwtRequestFilter , UsernamePasswordAuthenticationFilter.class);
+      //  http.addFilterBefore(jwtRequestFilter , UsernamePasswordAuthenticationFilter.class);
     }
 
     @Bean

@@ -1,5 +1,6 @@
 package com.lamine.InventoryManagement.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.lamine.InventoryManagement.model.CommandeClient;
 import com.lamine.InventoryManagement.model.EtatCommande;
 import lombok.Builder;
@@ -15,6 +16,8 @@ public class CommandeClientDto {
     private String code;
     private Instant dateCommande ;
     private ClientDto client ;
+
+    @JsonIgnore
     private List<LigneCommandeClientDto> ligneCommandeClients ;
     private Integer idEntreprise;
 

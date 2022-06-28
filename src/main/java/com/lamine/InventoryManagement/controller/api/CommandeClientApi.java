@@ -1,6 +1,7 @@
 package com.lamine.InventoryManagement.controller.api;
 
 import com.lamine.InventoryManagement.dto.CommandeClientDto;
+import com.lamine.InventoryManagement.dto.LigneCommandeClientDto;
 import com.lamine.InventoryManagement.model.EtatCommande;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -34,7 +35,13 @@ public interface CommandeClientApi {
     @PatchMapping(value = APP_ROOT+"/commandeClients/update/article/{idCommande}/{idLigneCommande}/{idArticle}",consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
     CommandeClientDto updateArticle(@PathVariable Integer idCommande,@PathVariable Integer idLigneCommande ,@PathVariable Integer idArticle);
 
+    @DeleteMapping(value = APP_ROOT+"/commandeClients/delete/article/{idCommande}/{idLigneCommande}",consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
+    CommandeClientDto deleteArticle(@PathVariable Integer idCommande,@PathVariable Integer idLigneCommande );
+
     @DeleteMapping(value = APP_ROOT+"/commandeClients/delete/{id}")
     void delete(@PathVariable Integer id);
+
+    @GetMapping (value = APP_ROOT+"/commandeClients/lignesCommandes/{idCommande}",produces = MediaType.APPLICATION_JSON_VALUE)
+    List<LigneCommandeClientDto> findAllLigneCommandeClientByCommandeClientId(@PathVariable Integer idCommande);
 
 }

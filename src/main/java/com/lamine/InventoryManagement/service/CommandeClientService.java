@@ -1,6 +1,7 @@
 package com.lamine.InventoryManagement.service;
 
 import com.lamine.InventoryManagement.dto.CommandeClientDto;
+import com.lamine.InventoryManagement.dto.LigneCommandeClientDto;
 import com.lamine.InventoryManagement.model.EtatCommande;
 
 import java.math.BigDecimal;
@@ -17,6 +18,11 @@ public interface CommandeClientService {
     CommandeClientDto updateClient (Integer idCommande , Integer idClient);
 
     CommandeClientDto updateArticle (Integer idCommande , Integer idLigneCommande , Integer newIdArticle);
+
+    // delete article ==> delete ligne commande
+    CommandeClientDto deleteArticle (Integer idCommande , Integer idLigneCommande);
+
+     List<LigneCommandeClientDto> findAllLigneCommandeClientByCommandeClientId (Integer idCommande);
 
 
 

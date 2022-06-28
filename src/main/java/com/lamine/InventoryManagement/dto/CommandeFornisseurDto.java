@@ -1,5 +1,6 @@
 package com.lamine.InventoryManagement.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.lamine.InventoryManagement.model.CommandeFornisseur;
 import lombok.Builder;
 import lombok.Data;
@@ -15,6 +16,7 @@ public class CommandeFornisseurDto {
     private String code;
     private Instant dateCommandeFornisseur ;
     private FornisseurDto fornisseur;
+    @JsonIgnore
     private List<LigneCommandeFornisseurDto> ligneCommandeFornisseurs ;
     private Integer idEntreprise;
 

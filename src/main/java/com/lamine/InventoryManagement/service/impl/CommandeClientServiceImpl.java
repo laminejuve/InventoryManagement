@@ -208,6 +208,25 @@ public class CommandeClientServiceImpl implements CommandeClientService {
         return cmdClient;
     }
 
+    @Override
+    public CommandeClientDto deleteArticle(Integer idCommande, Integer idLigneCommande) {
+
+        checkIdCommande(idCommande);
+        checkIdLigneCommande(idLigneCommande);
+        CommandeClientDto cmdClient = checkEtatCommande(idCommande);
+        //just to check the ligne commande and inform the client in case it doesnt exist
+        findLigneCommandeClient(idLigneCommande);
+        ligneCommandeClientRepository.deleteById(idLigneCommande);
+
+        return cmdClient;
+    }
+
+    @Override
+    public List<LigneCommandeClientDto> findAllLigneCommandeClientByCommandeClientId(Integer idCommande) {
+        return ligneCommandeClientRepository.findAllByCommandeClientId(idCommande).stream().
+                map(LigneCommandeClientDto::fromEntity).collect(Collectors.toList());
+    }
+
     private void checkIdCommande (Integer idCommande) {
         if (idCommande == null){
             log.error(" Commande client id is null ");
