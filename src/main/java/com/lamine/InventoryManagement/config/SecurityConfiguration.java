@@ -42,7 +42,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and().formLogin();
 
-      //  http.addFilterBefore(jwtRequestFilter , UsernamePasswordAuthenticationFilter.class);
+        http.addFilterBefore(jwtRequestFilter , UsernamePasswordAuthenticationFilter.class);
     }
 
     @Bean
