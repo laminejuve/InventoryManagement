@@ -19,7 +19,7 @@ public class MvmStockDto {
     private TypeMvtStk typeMvt ;
     private Integer idEntreprise;
 
-    public MvmStockDto fromEntity (MvmStock mvmStock){
+    public static MvmStockDto fromEntity(MvmStock mvmStock){
         if (mvmStock == null){
             // TODO an exception
             return null ;
@@ -31,7 +31,7 @@ public class MvmStockDto {
                 .idEntreprise(mvmStock.getIdEntreprise())
                 .build();
     }
-    public MvmStock toEntity (MvmStockDto mvmStockDto){
+    public static MvmStock toEntity (MvmStockDto mvmStockDto){
         if (mvmStockDto ==  null ){
             //TODO an exception
             return null ;
