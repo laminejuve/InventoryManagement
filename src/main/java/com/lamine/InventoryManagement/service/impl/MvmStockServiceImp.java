@@ -21,9 +21,10 @@ import java.util.stream.Collectors;
 public class MvmStockServiceImp implements MvmStockService {
 
     private MvmStockRepository mvmStockRepository;
-    private ArticleService articleService ;
+    private ArticleService articleService;
+
     @Autowired
-    public MvmStockServiceImp(MvmStockRepository mvmStockRepository ,ArticleService articleService ) {
+    public MvmStockServiceImp(MvmStockRepository mvmStockRepository, ArticleService articleService) {
         this.mvmStockRepository = mvmStockRepository;
         this.articleService = articleService;
     }
@@ -31,7 +32,7 @@ public class MvmStockServiceImp implements MvmStockService {
     @Override
     public BigDecimal stockReelArticle(Integer idArticle) {
 
-        if (idArticle == null){
+        if (idArticle == null) {
             log.warn("id article is null");
             return BigDecimal.valueOf(-1);
         }
@@ -47,49 +48,40 @@ public class MvmStockServiceImp implements MvmStockService {
 
     @Override
     public MvmStockDto entreeStock(MvmStockDto mvmStockDto) {
-        List<String> errors = MvmStockValidator.validate(mvmStockDto);
-        if (!errors.isEmpty()){
-            log.error("movement stock is not valid");
-            throw new EntityInvalidException("movement stock is not valid", ErrorCode.MVM_STOCK_NOT_VALID,errors);
-        }
-        mvmStockDto.setQuantity(BigDecimal.valueOf(Math.abs(mvmStockDto.getQuantity().doubleValue())));
-        mvmStockDto.setTypeMvt(TypeMvtStk.ENTREE);
-        return MvmStockDto.fromEntity(mvmStockRepository.save(MvmStockDto.toEntity(mvmStockDto)));
+        return entreeStockPos(mvmStockDto, TypeMvtStk.ENTREE);
     }
-
     @Override
     public MvmStockDto sortieStock(MvmStockDto mvmStockDto) {
-        List<String> errors = MvmStockValidator.validate(mvmStockDto);
-        if (!errors.isEmpty()){
-            log.error("movement stock is not valid");
-            throw new EntityInvalidException("movement stock is not valid", ErrorCode.MVM_STOCK_NOT_VALID,errors);
-        }
-        mvmStockDto.setQuantity(BigDecimal.valueOf(Math.abs(mvmStockDto.getQuantity().doubleValue())*-1));
-        mvmStockDto.setTypeMvt(TypeMvtStk.SORTIE);
-        return MvmStockDto.fromEntity(mvmStockRepository.save(MvmStockDto.toEntity(mvmStockDto)));
+        return sortieStockPos(mvmStockDto,TypeMvtStk.SORTIE);
     }
-
     @Override
     public MvmStockDto correctionStockPos(MvmStockDto mvmStockDto) {
+        return entreeStockPos(mvmStockDto, TypeMvtStk.CORRECTION_POS);
+    }
+    @Override
+    public MvmStockDto correctionStockNeg(MvmStockDto mvmStockDto) {
+        return sortieStockPos(mvmStockDto,TypeMvtStk.CORRECTION_NEG);
+    }
+    private MvmStockDto entreeStockPos(MvmStockDto mvmStockDto, TypeMvtStk typeMvtStk) {
         List<String> errors = MvmStockValidator.validate(mvmStockDto);
-        if (!errors.isEmpty()){
+        if (!errors.isEmpty()) {
             log.error("movement stock is not valid");
-            throw new EntityInvalidException("movement stock is not valid", ErrorCode.MVM_STOCK_NOT_VALID,errors);
+            throw new EntityInvalidException("movement stock is not valid", ErrorCode.MVM_STOCK_NOT_VALID, errors);
         }
         mvmStockDto.setQuantity(BigDecimal.valueOf(Math.abs(mvmStockDto.getQuantity().doubleValue())));
-        mvmStockDto.setTypeMvt(TypeMvtStk.CORRECTION_POS);
+        mvmStockDto.setTypeMvt(typeMvtStk);
         return MvmStockDto.fromEntity(mvmStockRepository.save(MvmStockDto.toEntity(mvmStockDto)));
     }
 
-    @Override
-    public MvmStockDto correctionStockNeg(MvmStockDto mvmStockDto) {
+    private MvmStockDto sortieStockPos(MvmStockDto mvmStockDto, TypeMvtStk typeMvtStk) {
         List<String> errors = MvmStockValidator.validate(mvmStockDto);
-        if (!errors.isEmpty()){
+        if (!errors.isEmpty()) {
             log.error("movement stock is not valid");
-            throw new EntityInvalidException("movement stock is not valid", ErrorCode.MVM_STOCK_NOT_VALID,errors);
+            throw new EntityInvalidException("movement stock is not valid", ErrorCode.MVM_STOCK_NOT_VALID, errors);
         }
-        mvmStockDto.setQuantity(BigDecimal.valueOf(Math.abs(mvmStockDto.getQuantity().doubleValue())*-1));
-        mvmStockDto.setTypeMvt(TypeMvtStk.CORRECTION_NEG);
+        mvmStockDto.setQuantity(BigDecimal.valueOf(Math.abs(mvmStockDto.getQuantity().doubleValue()) * -1));
+        mvmStockDto.setTypeMvt(typeMvtStk);
         return MvmStockDto.fromEntity(mvmStockRepository.save(MvmStockDto.toEntity(mvmStockDto)));
     }
 }
+

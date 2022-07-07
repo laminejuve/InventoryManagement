@@ -37,6 +37,19 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
                 .build();
         return new ResponseEntity<>(errorDto , badRequest);
     }
+    @ExceptionHandler(InvalidOperationException.class)
+    public ResponseEntity<ErrorDto> handleException (InvalidOperationException exception , WebRequest webRequest){
+
+        final HttpStatus notAllowed = HttpStatus.METHOD_NOT_ALLOWED ;
+        final ErrorDto errorDto = ErrorDto.builder()
+                .httpCode(notAllowed.value())
+                .errorCode(exception.getErrorCode())
+                .message(exception.getMessage())
+                .errors(exception.getErrors())
+                .build();
+        return new ResponseEntity<>(errorDto , notAllowed);
+    }
+
 
 
 
