@@ -17,7 +17,7 @@ public class LigneCommandeFornisseurDto {
     private BigDecimal prixUnitaire ;
     private Integer idEntreprise;
 
-    public LigneCommandeFornisseurDto fromEntity (LigneCommandeFornisseur ligneCommandeFornisseur){
+    public static LigneCommandeFornisseurDto fromEntity(LigneCommandeFornisseur ligneCommandeFornisseur){
         if (ligneCommandeFornisseur == null ){
             // TODO an exception
             return null ;

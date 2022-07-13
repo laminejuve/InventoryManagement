@@ -2,6 +2,7 @@ package com.lamine.InventoryManagement.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.lamine.InventoryManagement.model.CommandeFornisseur;
+import com.lamine.InventoryManagement.model.EtatCommande;
 import lombok.Builder;
 import lombok.Data;
 
@@ -16,6 +17,7 @@ public class CommandeFornisseurDto {
     private String code;
     private Instant dateCommandeFornisseur ;
     private FornisseurDto fornisseur;
+    private EtatCommande etatCommande ;
     @JsonIgnore
     private List<LigneCommandeFornisseurDto> ligneCommandeFornisseurs ;
     private Integer idEntreprise;
@@ -30,6 +32,7 @@ public class CommandeFornisseurDto {
                 .id(commandeFornisseur.getId())
                 .code(commandeFornisseur.getCode())
                 .dateCommandeFornisseur(commandeFornisseur.getDateCommandeFornisseur())
+                .etatCommande(commandeFornisseur.getEtatCommande())
                 .idEntreprise(commandeFornisseur.getIdEntreprise())
                 .build();
     }
@@ -43,7 +46,12 @@ public class CommandeFornisseurDto {
         commandeFornisseur.setId(commandeFornisseurDto.getId());
         commandeFornisseur.setCode(commandeFornisseurDto.getCode());
         commandeFornisseur.setDateCommandeFornisseur(commandeFornisseurDto.getDateCommandeFornisseur());
+        commandeFornisseur.setEtatCommande(commandeFornisseurDto.getEtatCommande());
         commandeFornisseur.setIdEntreprise(commandeFornisseurDto.getIdEntreprise());
         return commandeFornisseur;
     }
+    public boolean isCommandeLiveree (){
+        return EtatCommande.LIVREE.equals(this.etatCommande);
+    }
+
 }

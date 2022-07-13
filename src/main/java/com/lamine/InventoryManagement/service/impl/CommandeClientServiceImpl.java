@@ -1,8 +1,6 @@
 package com.lamine.InventoryManagement.service.impl;
 
-import com.lamine.InventoryManagement.dto.ClientDto;
-import com.lamine.InventoryManagement.dto.CommandeClientDto;
-import com.lamine.InventoryManagement.dto.LigneCommandeClientDto;
+import com.lamine.InventoryManagement.dto.*;
 import com.lamine.InventoryManagement.exception.EntityInvalidException;
 import com.lamine.InventoryManagement.exception.EntityNotFoundException;
 import com.lamine.InventoryManagement.exception.ErrorCode;
@@ -13,6 +11,7 @@ import com.lamine.InventoryManagement.repository.ClientRepository;
 import com.lamine.InventoryManagement.repository.CommandeClientRepository;
 import com.lamine.InventoryManagement.repository.LigneCommandeClientRepository;
 import com.lamine.InventoryManagement.service.CommandeClientService;
+import com.lamine.InventoryManagement.service.MvmStockService;
 import com.lamine.InventoryManagement.validator.CommandeClientValidator;
 import com.lamine.InventoryManagement.validator.LigneCommandeClientValidator;
 import lombok.extern.slf4j.Slf4j;
@@ -21,6 +20,7 @@ import org.springframework.stereotype.Service;
 
 import java.awt.dnd.InvalidDnDOperationException;
 import java.math.BigDecimal;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -34,12 +34,14 @@ public class CommandeClientServiceImpl implements CommandeClientService {
     ClientRepository clientRepository;
     LigneCommandeClientRepository ligneCommandeClientRepository;
     ArticleRepository articleRepository;
+    MvmStockService mvmStockService;
     @Autowired
-    public CommandeClientServiceImpl(CommandeClientRepository commandeClientRepository, ClientRepository clientRepository, LigneCommandeClientRepository ligneCommandeClientRepository, ArticleRepository articleRepository) {
+    public CommandeClientServiceImpl(CommandeClientRepository commandeClientRepository, ClientRepository clientRepository, LigneCommandeClientRepository ligneCommandeClientRepository, ArticleRepository articleRepository ,MvmStockService mvmStockService) {
         this.commandeClientRepository = commandeClientRepository;
         this.clientRepository = clientRepository;
         this.ligneCommandeClientRepository = ligneCommandeClientRepository;
         this.articleRepository = articleRepository;
+        this.mvmStockService = mvmStockService;
     }
 
     @Override
@@ -143,6 +145,9 @@ public class CommandeClientServiceImpl implements CommandeClientService {
 
         cmdClient.setEtatCommande(etatCommande);
         CommandeClient updatedCmd = commandeClientRepository.save(CommandeClientDto.toEntity(cmdClient));
+        if (cmdClient.isCommandeLiveree()){
+            updateMvtStk(idCommande);
+        }
 
         return CommandeClientDto.fromEntity(updatedCmd);
     }
@@ -261,5 +266,20 @@ public class CommandeClientServiceImpl implements CommandeClientService {
                     "ligneCommande",ErrorCode.LIGNE_COMMANDE_CLIENT_NOT_FOUND);
         }
         return ligneCommandeClientOptional;
+    }
+
+    private void updateMvtStk (Integer idCommande){
+        List<LigneCommandeClient> ligneCommandeClients = ligneCommandeClientRepository.findAllByCommandeClientId(idCommande);
+        ligneCommandeClients.forEach(ligne -> {
+            MvmStockDto sortieStock = MvmStockDto.builder()
+                    .article(ArticleDto.fromEntity(ligne.getArticle()))
+                    .dateMvt(Instant.now())
+                    .typeMvt(TypeMvtStk.SORTIE)
+                    .sourceMvmStk(SourceMvmStk.COMMANDE_CLIENT)
+                    .quantity(ligne.getQuantity())
+                    .idEntreprise(ligne.getIdEntreprise())
+                    .build();
+            mvmStockService.sortieStock(sortieStock);
+        });
     }
 }

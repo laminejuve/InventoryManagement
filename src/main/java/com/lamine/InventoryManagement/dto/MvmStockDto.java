@@ -1,6 +1,7 @@
 package com.lamine.InventoryManagement.dto;
 
 import com.lamine.InventoryManagement.model.MvmStock;
+import com.lamine.InventoryManagement.model.SourceMvmStk;
 import com.lamine.InventoryManagement.model.TypeMvtStk;
 import lombok.Builder;
 import lombok.Data;
@@ -18,6 +19,7 @@ public class MvmStockDto {
     private ArticleDto article;
     private TypeMvtStk typeMvt ;
     private Integer idEntreprise;
+    private SourceMvmStk sourceMvmStk;
 
     public static MvmStockDto fromEntity(MvmStock mvmStock){
         if (mvmStock == null){
@@ -27,7 +29,10 @@ public class MvmStockDto {
         return MvmStockDto.builder()
                 .id(mvmStock.getId())
                 .dateMvt(mvmStock.getDateMvt())
+                .article(ArticleDto.fromEntity(mvmStock.getArticle()))
                 .quantity(mvmStock.getQuantity())
+                .typeMvt(mvmStock.getTypeMvt())
+                .sourceMvmStk(mvmStock.getSourceMvmStk())
                 .idEntreprise(mvmStock.getIdEntreprise())
                 .build();
     }
@@ -40,6 +45,9 @@ public class MvmStockDto {
         mvmStock.setId(mvmStockDto.getId());
         mvmStock.setDateMvt(mvmStockDto.getDateMvt());
         mvmStock.setQuantity(mvmStockDto.getQuantity());
+        mvmStock.setArticle(ArticleDto.toEntity(mvmStockDto.getArticle()));
+        mvmStock.setTypeMvt(mvmStockDto.getTypeMvt());
+        mvmStock.setSourceMvmStk(mvmStockDto.getSourceMvmStk());
         mvmStock.setIdEntreprise(mvmStockDto.getIdEntreprise());
         return mvmStock ;
     }

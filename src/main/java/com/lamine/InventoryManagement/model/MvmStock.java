@@ -24,6 +24,6 @@ public class MvmStock extends AbstractEntity {
     @ManyToOne
     @JoinColumn(name = "idArticle")
     private Article article;
-
-   // private TypeMvtStk typeMvt ;
+    private SourceMvmStk sourceMvmStk;
+    private TypeMvtStk typeMvt ;
 }
