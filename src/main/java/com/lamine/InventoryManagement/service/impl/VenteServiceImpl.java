@@ -1,21 +1,24 @@
 package com.lamine.InventoryManagement.service.impl;
 
+import com.lamine.InventoryManagement.dto.ArticleDto;
 import com.lamine.InventoryManagement.dto.LigneVenteDto;
+import com.lamine.InventoryManagement.dto.MvmStockDto;
 import com.lamine.InventoryManagement.dto.VenteDto;
 import com.lamine.InventoryManagement.exception.EntityInvalidException;
 import com.lamine.InventoryManagement.exception.EntityNotFoundException;
 import com.lamine.InventoryManagement.exception.ErrorCode;
-import com.lamine.InventoryManagement.model.Article;
-import com.lamine.InventoryManagement.model.LigneVente;
-import com.lamine.InventoryManagement.model.Vente;
+import com.lamine.InventoryManagement.model.*;
 import com.lamine.InventoryManagement.repository.ArticleRepository;
 import com.lamine.InventoryManagement.repository.LigneVenteRepository;
 import com.lamine.InventoryManagement.repository.VenteRepository;
+import com.lamine.InventoryManagement.service.MvmStockService;
 import com.lamine.InventoryManagement.service.VenteService;
 import com.lamine.InventoryManagement.validator.VenteValidator;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -28,6 +31,15 @@ public class VenteServiceImpl implements VenteService {
     VenteRepository venteRepository;
     LigneVenteRepository ligneVenteRepository;
     ArticleRepository articleRepository;
+    MvmStockService mvmStockService;
+
+    @Autowired
+    public VenteServiceImpl(VenteRepository venteRepository, LigneVenteRepository ligneVenteRepository, ArticleRepository articleRepository, MvmStockService mvmStockService) {
+        this.venteRepository = venteRepository;
+        this.ligneVenteRepository = ligneVenteRepository;
+        this.articleRepository = articleRepository;
+        this.mvmStockService = mvmStockService;
+    }
 
     @Override
     public VenteDto getVente(Integer id) {
@@ -72,6 +84,7 @@ public class VenteServiceImpl implements VenteService {
             LigneVente ligneVente= LigneVenteDto.toEntity(ligneVenteDto);
             ligneVente.setVente(savedVente);
             ligneVenteRepository.save(ligneVente);
+            updateMvtStk(ligneVente);
         });
         return VenteDto.fromEntity(savedVente);
     }
@@ -83,5 +96,16 @@ public class VenteServiceImpl implements VenteService {
             return;
         }
       venteRepository.deleteById(id);
+    }
+    private void updateMvtStk (LigneVente ligneVente){
+            MvmStockDto entreeStock = MvmStockDto.builder()
+                    .article(ArticleDto.fromEntity(ligneVente.getArticle()))
+                    .dateMvt(Instant.now())
+                    .typeMvt(TypeMvtStk.SORTIE)
+                    .sourceMvmStk(SourceMvmStk.VENTE)
+                    .quantity(ligneVente.getQuantity())
+                    .idEntreprise(ligneVente.getIdEntreprise())
+                    .build();
+            mvmStockService.entreeStock(entreeStock);
     }
 }
